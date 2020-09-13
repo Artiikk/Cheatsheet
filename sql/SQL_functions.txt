@@ -1,0 +1,20 @@
+SQL functions - doesn't change the values of the table, but change only the output
+;// ASC - alpabetical order, DESC - reverse order
+
+- SELECT UPPER(names_list) FROM users; // - to uppercase
+- SELECT RIGHT(names_list, 2) FROM users; // 2 right symbols
+- SELECT LEFT(names_list, 2) FROM users; // 2 left symbols
+- SELECT COUNT(reputation) FROM users; // sum of records from table
+- SELECT AVG(reputation) FROM users;
+- SELECT name, SUM(reputation) FROM users GROUP BY name;
+- SELECT name, MAX(rate) FROM users GROUP BY name;
+
+- SELECT SUM(reputation) FROM users;
+- SELECT MAX(reputation) FROM users;
+- SELECT MIN(reputation) FROM users;
+- SELECT name, lname FROM users WHERE reputation = (SELECT MAX(reputation) FROM users);
+
+- UPDATE users SET name = SUBSTRING_INDEX(names_list, ' ', 1); // setting name, using other field, identificator, and number of words after identificator, could be -1 from end;
+- UPDATE users SET lname = SUBSTRING_INDEX(names_list, ' ', -1); // could be also -1 (taking words from the end)
+
+- LTRIM / RTRIM ; //deletes spaces from left and right

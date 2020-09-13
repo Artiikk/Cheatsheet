@@ -1,0 +1,61 @@
+--Basic SQL commands--
+
+- SHOW databases;
+- CREATE DATABASE new_db;
+- DROP DATABASE new_db;
+
+- USE new_db; // choosing database to work with;
+
+- CREATE TABLE people ( id INT AUTO_INCREMENT PRIMARY KEY, fname VARCHAR(30) NOT NULL, lname VARCHAR(30), email VARCHAR(30) ); // or , PRIMARY KEY(id)
+- DROP TABLE people;
+
+- show columns from people | DESC people;
+
+- INSERT INTO subscribers VALUES ( 1, 'Artur', 'Shes', 'art@asd.com' );
+- INSERT INTO subscribers (email, fname) VALUES ( 'newnew@inbox.com', 'Roger' ); // for some values
+
+- SELECT * FROM subscribers; // show columns (SELECT means select from columns);
+- SELECT name,price FROM products WHERE rate >= 7;
+- SELECT name,price FROM products WHERE shop_name = 'Tesco' AND rate = 7;
+- SELECT name,price FROM products WHERE shop_name = 'Tesco' OR rate = 7;
+- SELECT name FROM products WHERE shop_name LIKE '%sco'; // % - all symbols before or after
+- SELECT name FROM products WHERE shop_name LIKE '_sco'; // _ - 1 symbol before or after
+- SELECT name,rate FROM products WHERE rate IN (7,8,9); // - instead of multiple OR
+- SELECT name,price FROM products WHERE price BETWEEN 50 and 100;
+- SELECT name,price FROM products WHERE NOT price BETWEEN 50 and 100;
+- SELECT name,price FROM products WHERE (price > 50 OR rate > 5) AND shop_name = 'Tesco';
+
+- SELECT * FROM users ORDER BY reputation; // (order - null, digits, special symbols, symbols)
+- SELECT * FROM users ORDER BY reputation DESC; // from the end
+- SELECT DISTINCT name from users; // select only unique values
+- SELECT name, lname, rate FROM users ORDER BY rate DESC LIMIT 1; // amount of items to select
+- SELECT name, lname, rate FROM users ORDER BY rate DESC LIMIT 0, 3; // from 0 to 3
+
+- DELETE FROM products WHERE rate > 10; // to delete row
+- UPDATE products SET rate = 8 WHERE id = 1;
+- UPDATE products SET rate = rate * 3;
+- UPDATE users SET rate = CASE
+    -> WHEN reputation = 350 THEN 'Elite'
+    -> WHEN reputation > 249 THEN 'Normal'
+    -> WHEN reputation > 149 THEN 'Typical'
+    -> WHEN reputation = 0 then 'Noob'
+    -> ELSE 'error rate'
+    -> END;
+
+
+- ALTER TABLE clients ADD COLUMN id INT AUTO_INCREMENT FIRST, ADD PRIMARY KEY (id);
+- ALTER TABLE users ADD COLUMN test varchar(10) after id;
+- ALTER TABLE users DROP COLUMN test;
+- ALTER TABLE users RENAME TO testUsers;
+- ALTER TABLE users CHANGE COLUMN name names_list VARCHAR(15) NOT NULL; // change column name & type
+- ALTER TABLE users MODIFY COLUMN names_list VARCHAR(20) (first, second || after id); // change type and placement
+- ALTER TABLE users DROP COLUMN id, CHANGE COLUMN names_list name VARCHAR(15);
+
+- ALTER TABLE users ADD COLUMN id INT AUTO_INCREMENT FIRST, ADD PRIMARY KEY (id),
+                                    CHANGE COLUMN name names_list VARCHAR(20),
+                                    ADD COLUMN lname_list VARCHAR(20);
+
+- ALTER TABLE users ADD COLUMN income INT DEFAULT 337; // default value
+- SELECT name as имена FROM users; // output name change (псевдоним)
+
+;// CHAR(25) means only 25 symbols, VARCHAR(25) would be changed dynamically for needed amount

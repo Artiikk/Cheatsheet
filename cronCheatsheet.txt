@@ -1,0 +1,32 @@
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                   7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * * <command to execute>
+
+30 5 1 1 * - запустится в 5.30 утра, 1 января каждый год
+0 0 * * 1 - запустится в полночь, каждый понедельник
+0 0 1,15 * * - запустится в полночь 1 и 15 числа
+* * 1,15 * * - 1 и 15 числа будет каждую минуту запускать скрипт
+*/5 * * * * - будет запускаться каждые 5 минут
+0 0 */3 * * - будет запускаться каждые 3 дня в полночь
+0 0-5 * * * - будет запускаться каждый час с 0 до 5 часов утра каждый день
+
+*/30 9-17 * * 1-5 - будет запускаться каждые 30 минут с 9 до 5 с понедельника по пятницу
+
+crontab -l # list of cron tasks for current user
+crontab -e # add cron tasks
+crontab -r # deleting current cron file (we can also simply delete all content from it)
+
+
+# Real life scenarious
+
+# Empty temp folder every Friday at 5pm
+0 5 * * 5 rm -rf /tmp/*
+
+# Backup images to Google Drive every night at midnight
+0 0 * * * rsync -a ~/Pictures/ ~/Google\ Drive/Pictures/

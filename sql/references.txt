@@ -1,0 +1,25 @@
+; // one to one
+CREATE TABLE persons (
+  person_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE locations (
+  person_location_id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(20),
+  FOREIGN KEY (person_location_id) REFERENCES persons (person_id)
+);
+
+
+; // one to many
+CREATE TABLE contacts (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE activities (
+  act_id INT AUTO_INCREMENT PRIMARY KEY,
+  activity VARCHAR(20) NOT NULL,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES contacts (user_id)
+);
